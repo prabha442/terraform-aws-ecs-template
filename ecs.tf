@@ -24,7 +24,7 @@ data "template_file" "env_vars" {
 resource "aws_ecs_task_definition" "aws-ecs-task" {
   family = "${var.app_name}-task"
 
-  container_definitions = <<DEFINITION
+  container_definitions = file("container-definitions/container-def.json") <<DEFINITION
   [
     {
       "name": "${var.app_name}-${var.app_environment}-container",
